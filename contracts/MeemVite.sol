@@ -13,7 +13,6 @@ import '@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol';
 
-import './ERC2981/ERC2981PerTokenRoyalties.sol';
 import './ERC721TradableUpgradeable.sol';
 import './Base64.sol';
 
@@ -21,7 +20,6 @@ contract MeemVite is
 	ERC721TradableUpgradeable,
 	AccessControlUpgradeable,
 	OwnableUpgradeable,
-	ERC2981PerTokenRoyalties,
 	PausableUpgradeable,
 	UUPSUpgradeable,
 	ERC721BurnableUpgradeable,
@@ -36,6 +34,9 @@ contract MeemVite is
 	bytes32 public constant UPGRADER_ROLE = keccak256('UPGRADER_ROLE');
 
 	CountersUpgradeable.Counter private _tokenIdCounter;
+
+	// Mapping from token ID to inviter address
+	mapping(uint256 => address) private _inviters;
 
 	function initialize(address _proxyRegistryAddress) public initializer {
 		__ERC721Tradable_init('MeemVite', 'MEEMVITE', _proxyRegistryAddress);
@@ -207,7 +208,7 @@ contract MeemVite is
 				Base64.encode(
 					bytes(
 						abi.encodePacked(
-							'{"name":"Genesis Meem","description":"Hello Meem #0","external_url":"https://meem.wtf/tokens/0","image":"data:image/svg+xml;base64,',
+							'{"name":"MeemVite #","description":"A MeemVite","external_url":"https://meem.wtf/tokens/0","image":"data:image/svg+xml;base64,',
 							Base64.encode(
 								'<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { fill: white; font-family: serif; font-size: 14px; }</style><rect width="100%" height="100%" fill="black" /><text x="10" y="20" class="base">Meem Test 1</text></svg>'
 							),
@@ -227,8 +228,7 @@ contract MeemVite is
 		override(
 			ERC721Upgradeable,
 			AccessControlUpgradeable,
-			ERC721EnumerableUpgradeable,
-			ERC2981PerTokenRoyalties
+			ERC721EnumerableUpgradeable
 		)
 		returns (bool)
 	{
@@ -237,8 +237,37 @@ contract MeemVite is
 
 	function mint(address to) external {
 		_safeMint(to, _tokenIdCounter.current());
+		_inviters[_tokenIdCounter.current()] = msg.sender;
 
 		_tokenIdCounter.increment();
+	}
+
+	// Who invited the user
+	function tokenInviter(uint256 tokenId) public view returns (address) {
+		return _inviters[tokenId];
+	}
+
+	function _transfer(
+		address from,
+		address to,
+		uint256 tokenId
+	) internal virtual override {
+		super._transfer(from, to, tokenId);
+
+		// Since the token was transferred, the inviter of the token becomes the from address
+		_inviters[tokenId] = from;
+	}
+
+	function svgToImageURI(string memory svg)
+		public
+		pure
+		returns (string memory)
+	{
+		string memory baseURL = 'data:image/svg+xml;base64,';
+		string memory svgBase64Encoded = Base64.encode(
+			bytes(string(abi.encodePacked(svg)))
+		);
+		return string(abi.encodePacked(baseURL, svgBase64Encoded));
 	}
 
 	function contractURI() public pure returns (string memory) {
