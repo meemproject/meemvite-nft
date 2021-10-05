@@ -26,6 +26,8 @@ contract MeemVite is
 	ERC721EnumerableUpgradeable,
 	ERC721URIStorageUpgradeable
 {
+	event InviterSet(uint256 tokenId, address inviter);
+
 	using CountersUpgradeable for CountersUpgradeable.Counter;
 	using StringsUpgradeable for uint256;
 
@@ -238,7 +240,7 @@ contract MeemVite is
 	function mint(address to) external {
 		_safeMint(to, _tokenIdCounter.current());
 		_inviters[_tokenIdCounter.current()] = msg.sender;
-
+		emit InviterSet(_tokenIdCounter.current(), msg.sender);
 		_tokenIdCounter.increment();
 	}
 
@@ -256,6 +258,8 @@ contract MeemVite is
 
 		// Since the token was transferred, the inviter of the token becomes the from address
 		_inviters[tokenId] = from;
+
+		emit InviterSet(tokenId, from);
 	}
 
 	function svgToImageURI(string memory svg)

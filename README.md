@@ -1,12 +1,6 @@
 # MeemVite token
 
-Meem NFT token
-
-## Rules
-
-* Minter MUST set 10% royalty on creation that can not be the creating address.
-* Owner of token may re-point royalties at any time
-*
+MeemVite NFT token
 
 ## Contract address
 
@@ -67,7 +61,7 @@ This will open a hardhat console where you can interact directly with the smart 
 ### Get a meem instance for use in hardhat console
 
 ```
-const meem = await (await ethers.getContractFactory('Meem')).attach('<Contract_address>')
+const meemVite = await (await ethers.getContractFactory('MeemVite')).attach('<Contract_address>')
 ```
 
 ### Mint a meem
