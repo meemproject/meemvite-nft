@@ -4,7 +4,11 @@ MeemVite NFT token
 
 ## Contract address
 
-Rinkeby: [0x2295173156a9Ab02Bfa88BD73A807d97dCBC0658](https://rinkeby.etherscan.io/address/0x2295173156a9Ab02Bfa88BD73A807d97dCBC0658)
+### Rinkeby
+
+MeemVite: [0xB117C7cc3cBdA283A98f2BF1eD55242d5d438bc2](https://rinkeby.etherscan.io/address/0xB117C7cc3cBdA283A98f2BF1eD55242d5d438bc2)
+
+MeemViteURI: [0xfD4E238B06FE747294515c4ef366bbB9d92E1dC7](https://rinkeby.etherscan.io/address/0xfD4E238B06FE747294515c4ef366bbB9d92E1dC7)
 
 Opensea: [https://testnets.opensea.io/collection/meem-project](https://testnets.opensea.io/collection/meem-project)
 

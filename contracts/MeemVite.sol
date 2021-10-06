@@ -15,6 +15,7 @@ import '@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol';
 
 import './ERC721TradableUpgradeable.sol';
 import './Base64.sol';
+import './MeemViteURI.sol';
 
 contract MeemVite is
 	ERC721TradableUpgradeable,
@@ -39,6 +40,7 @@ contract MeemVite is
 
 	// Mapping from token ID to inviter address
 	mapping(uint256 => address) private _inviters;
+	address private uriContractAddress;
 
 	function initialize(address _proxyRegistryAddress) public initializer {
 		__ERC721Tradable_init('MeemVite', 'MEEMVITE', _proxyRegistryAddress);
@@ -143,87 +145,6 @@ contract MeemVite is
 		return string(bstr);
 	}
 
-	function tokenURI(uint256 tokenId)
-		public
-		pure
-		override(ERC721Upgradeable, ERC721URIStorageUpgradeable)
-		returns (string memory)
-	{
-		// return super.tokenURI(tokenId);
-		// string memory baseURI = _baseURI();
-		// return
-		// 	bytes(baseURI).length > 0
-		// 		? string(abi.encodePacked(baseURI, tokenId.toString(), '.json'))
-		// 		: '';
-		// string[3] memory parts;
-		// parts[
-		// 	0
-		// ] = '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { fill: white; font-family: serif; font-size: 14px; }</style><rect width="100%" height="100%" fill="black" /><text x="10" y="20" class="base">Meem Test';
-
-		// parts[1] = uint2str(tokenId);
-
-		// parts[2] = '</text></svg>';
-
-		// string memory svg = string(
-		// 	abi.encodePacked(parts[0], parts[1], parts[2])
-		// );
-
-		// string memory json = Base64.encode(
-		// 	bytes(
-		// 		string(
-		// 			abi.encodePacked(
-		// 				'{"name": "MeemVite #',
-		// 				uint2str(tokenId),
-		// 				'", "description": "MeemVite is your access token to Meem Discord", "image": "data:image/svg+xml;base64,',
-		// 				Base64.encode(bytes(svg)),
-		// 				'"}'
-		// 			)
-		// 		)
-		// 	)
-		// );
-
-		// string memory output = string(
-		// 	abi.encodePacked('data:application/json;base64,', json)
-		// );
-
-		// string memory output = string(
-		// 	abi.encodePacked(
-		// 		'data:application/json;base64,',
-		// 		Base64.encode(
-		// 			bytes(
-		// 				abi.encodePacked(
-		// 					'{"name":"',
-		// 					'MeemVite Test ',
-		// 					uint2str(tokenId),
-		// 					'", "description":"Meemvite Testing", "attributes":"", "image":"data:image/svg+xml;base64,',
-		// 					Base64.encode(bytes(svg)),
-		// 					'"}'
-		// 				)
-		// 			)
-		// 		)
-		// 	)
-		// );
-
-		string memory output = string(
-			abi.encodePacked(
-				'data:application/json;base64,',
-				Base64.encode(
-					bytes(
-						abi.encodePacked(
-							'{"name":"MeemVite #","description":"A MeemVite","external_url":"https://meem.wtf/tokens/0","image":"data:image/svg+xml;base64,',
-							Base64.encode(
-								'<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350"><style>.base { fill: white; font-family: serif; font-size: 14px; }</style><rect width="100%" height="100%" fill="black" /><text x="10" y="20" class="base">Meem Test 1</text></svg>'
-							),
-							'","background_color":"FF0000","_animation_url":"","_youtube_url":"","attributes":[{"trait_type":"Kind","value":"Genesis"},{"display_type":"date","trait_type":"birthday","value":1632859345},{"trait_type":"Base","value":"Starfish"},{"trait_type":"Eyes","value":"Big"},{"trait_type":"Mouth","value":"Surprised"},{"trait_type":"Level","value":5},{"trait_type":"Stamina","value":1.4},{"trait_type":"Personality","value":"Sad"},{"display_type":"boost_number","trait_type":"Aqua Power","value":40},{"display_type":"boost_percentage","trait_type":"Stamina Increase","value":10},{"display_type":"number","trait_type":"Generation","value":2}]}'
-						)
-					)
-				)
-			)
-		);
-
-		return output;
-	}
-
 	function supportsInterface(bytes4 interfaceId)
 		public
 		view
@@ -262,18 +183,6 @@ contract MeemVite is
 		emit InviterSet(tokenId, from);
 	}
 
-	function svgToImageURI(string memory svg)
-		public
-		pure
-		returns (string memory)
-	{
-		string memory baseURL = 'data:image/svg+xml;base64,';
-		string memory svgBase64Encoded = Base64.encode(
-			bytes(string(abi.encodePacked(svg)))
-		);
-		return string(abi.encodePacked(baseURL, svgBase64Encoded));
-	}
-
 	function contractURI() public pure returns (string memory) {
 		return
 			string(
@@ -281,10 +190,27 @@ contract MeemVite is
 					'data:application/json;base64,',
 					Base64.encode(
 						bytes(
-							'{"name": "MeemVite Test","description": "On-chain test","image": "https://openseacreatures.io/image.png","external_link": "https://openseacreatures.io","seller_fee_basis_points": 1000, "fee_recipient": "0xba343c26ad4387345edbb3256e62f4bb73d68a04"}'
+							'{"name": "MeemVite","description": "Meems are pieces of digital content wrapped in more advanced dynamic property rights. They are ideas, stories, images -- existing independently from any social platform -- whose creators have set the terms by which others can access, remix, and share in their value. Join us at https://discord.gg/5NP8PYN8","image": "https://meem-assets.s3.amazonaws.com/meem.jpg","external_link": "https://meem.wtf","seller_fee_basis_points": 0, "fee_recipient": "0xba343c26ad4387345edbb3256e62f4bb73d68a04"}'
 						)
 					)
 				)
 			);
+	}
+
+	function tokenURI(uint256 tokenId)
+		public
+		view
+		override(ERC721Upgradeable, ERC721URIStorageUpgradeable)
+		returns (string memory)
+	{
+		MeemViteURI uriContract = MeemViteURI(uriContractAddress);
+		return uriContract.tokenURI(tokenId);
+	}
+
+	function setURIContractAddress(address addr)
+		public
+		onlyRole(DEFAULT_ADMIN_ROLE)
+	{
+		uriContractAddress = addr;
 	}
 }

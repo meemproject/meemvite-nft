@@ -13,6 +13,7 @@
 		"hardhat": "npx hardhat",
 		"accounts": "npx hardhat accounts",
 		"deploy": "npx hardhat deploy",
+		"deployURI": "npx hardhat deployURI",
 		"upgradeContract": "npx hardhat upgradeContract",
 		"test": "npx hardhat test",
 		"coverage": "npx hardhat coverage",
