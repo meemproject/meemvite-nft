@@ -179,4 +179,22 @@ describe('MeemVite', function Test() {
 		const json = JSON.parse(buff.toString())
 		assert.equal(json.name, 'MeemVite')
 	})
+
+	it('Can set proxy address as owner', async () => {
+		const { status } = await (
+			await meemVite
+				.connect(signers[0])
+				.setProxyRegistryAddress('0x58807baD0B376efc12F5AD86aAc70E78ed67deaE')
+		).wait()
+
+		assert.equal(status, 1)
+	})
+
+	it('Can not set proxy address non-owner', async () => {
+		await assert.isRejected(
+			meemVite
+				.connect(signers[1])
+				.setProxyRegistryAddress('0x58807baD0B376efc12F5AD86aAc70E78ed67deaE')
+		)
+	})
 })

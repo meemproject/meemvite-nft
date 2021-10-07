@@ -212,4 +212,11 @@ contract MeemVite is
 	{
 		_tokenURIContractAddress = addr;
 	}
+
+	function setProxyRegistryAddress(address addr)
+		public
+		onlyRole(DEFAULT_ADMIN_ROLE)
+	{
+		_setProxyRegistryAddress(addr);
+	}
 }

@@ -12,9 +12,9 @@ Join us in building the future of digital content where creators set the rules: 
 
 ### Rinkeby Testnet
 
-MeemVite: [0xB117C7cc3cBdA283A98f2BF1eD55242d5d438bc2](https://rinkeby.etherscan.io/address/0xB117C7cc3cBdA283A98f2BF1eD55242d5d438bc2)
+MeemVite: [0x31ef3101f5F355933fcA188Af902651A192Db50a](https://rinkeby.etherscan.io/address/0x31ef3101f5F355933fcA188Af902651A192Db50a)
 
-MeemViteURI: [0x98FcF9C8bB265C74818F5eC4fC067e564304361a](https://rinkeby.etherscan.io/address/0x98FcF9C8bB265C74818F5eC4fC067e564304361a)
+MeemViteURI: [0x2Fad249f7b2e10708F4D7Ef8d20C21b18DF15Cf4](https://rinkeby.etherscan.io/address/0x2Fad249f7b2e10708F4D7Ef8d20C21b18DF15Cf4)
 
 Opensea: [https://testnets.opensea.io/collection/meem-project](https://testnets.opensea.io/collection/meem-project)
 

@@ -31,6 +31,10 @@ contract ERC721TradableUpgradeable is Initializable, ERC721Upgradeable {
 		proxyRegistryAddress = _proxyRegistryAddress;
 	}
 
+	function _setProxyRegistryAddress(address _proxyRegistryAddress) internal {
+		proxyRegistryAddress = _proxyRegistryAddress;
+	}
+
 	/**
 	 * Override isApprovedForAll to whitelist user's OpenSea proxy accounts to enable gas-less listings.
 	 */
