@@ -8,7 +8,7 @@ MeemVite NFT token
 
 MeemVite: [0xB117C7cc3cBdA283A98f2BF1eD55242d5d438bc2](https://rinkeby.etherscan.io/address/0xB117C7cc3cBdA283A98f2BF1eD55242d5d438bc2)
 
-MeemViteURI: [0xfD4E238B06FE747294515c4ef366bbB9d92E1dC7](https://rinkeby.etherscan.io/address/0xfD4E238B06FE747294515c4ef366bbB9d92E1dC7)
+MeemViteURI: [0x98FcF9C8bB265C74818F5eC4fC067e564304361a](https://rinkeby.etherscan.io/address/0x98FcF9C8bB265C74818F5eC4fC067e564304361a)
 
 Opensea: [https://testnets.opensea.io/collection/meem-project](https://testnets.opensea.io/collection/meem-project)
 
@@ -50,11 +50,17 @@ This will start up a local node using hardhat
 
 **You should only do this the first time. After that you should use upgrade to keep the same address**
 
+#### Deploy MeemVite contract
+
 ```yarn deploy```
+
+#### Deploy MeemVite URI contract
+
+```yarn deployURI```
 
 ### Upgrade the contract
 
-```yarn upgrade --contract-address <address>```
+```yarn upgradeContract --contract-address <address>```
 
 ## Console Interaction
 
