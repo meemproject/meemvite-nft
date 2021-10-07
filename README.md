@@ -1,10 +1,16 @@
 # MeemVite token
 
-MeemVite NFT token
+A MeemVite token connects you directly with the MeemDAO team on Discord as a full "Meember".
 
-## Contract address
+Join us in building the future of digital content where creators set the rules: [https://discord.gg/5NP8PYN8](https://discord.gg/5NP8PYN8)
 
-### Rinkeby
+## Contract addresses
+
+### Polygon (MATIC) Mainnet
+
+
+
+### Rinkeby Testnet
 
 MeemVite: [0xB117C7cc3cBdA283A98f2BF1eD55242d5d438bc2](https://rinkeby.etherscan.io/address/0xB117C7cc3cBdA283A98f2BF1eD55242d5d438bc2)
 
@@ -14,6 +20,8 @@ Opensea: [https://testnets.opensea.io/collection/meem-project](https://testnets.
 
 ## Metadata
 
+All metadata is 100% on-chain!
+
 * Metadata standards for opensea: https://docs.opensea.io/docs/metadata-standards
 
 * Contract (opensea collection) standards for opensea: https://docs.opensea.io/docs/contract-level-metadata
@@ -21,6 +29,10 @@ Opensea: [https://testnets.opensea.io/collection/meem-project](https://testnets.
 ## Development
 
 By default all commands will use the local network. For other networks use the ```--network <network_name>``` flag. See the hardhat.config.ts file for network names.
+
+### Set up your .env
+
+Copy the `.env.example` file to .env
 
 ### Install dependencies
 
@@ -30,11 +42,15 @@ By default all commands will use the local network. For other networks use the `
 
 ```yarn watch```
 
+### Run tests
+
+```yarn test```
+
 ### Run local blockchain
 
 This will start up a local node using hardhat
 
-```yarn node```
+```yarn network```
 
 **NEVER SEND ETH TO THESE ADDRESSES EXCEPT ON YOUR LOCAL NETWORK**
 
@@ -42,7 +58,7 @@ This will start up a local node using hardhat
 
 > **Change the network**
 >
-> For (deploy, upgrade, console) commands, you can change the network with `--network rinkeby`
+> For (deploy, upgrade, console, etc.) commands, you can change the network with `--network <network name>`
 >
 > The local network is used by default.
 
@@ -74,12 +90,18 @@ This will open a hardhat console where you can interact directly with the smart 
 const meemVite = await (await ethers.getContractFactory('MeemVite')).attach('<Contract_address>')
 ```
 
-### Mint a meem
+### Set the token URI contract
 
-The last parameter is the royalty percentage w/ 2 decimals. 1000 == 10%
+To properly return the `tokenURI`, the contract of the MeemViteURI address must be set
 
 ```
-await meem.mint('<To address>', '<Royalty address>', 1000)
+await meemVite.setTokenURIContractAddress(<MeemViteURI address>)
+```
+
+### Mint a MeemVite
+
+```
+await meem.mint('<To address>')
 ```
 
 ### Get meem metadata uri
