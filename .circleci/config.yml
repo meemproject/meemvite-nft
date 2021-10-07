@@ -22,7 +22,11 @@ workflows:
   version: 2
   do_build:
     jobs:
-      - test
+      - test:
+          filters:
+            branches:
+              ignore:
+                - master
       - release:
           context: private_packages
           filters:
