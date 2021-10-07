@@ -40,7 +40,8 @@ contract MeemVite is
 
 	// Mapping from token ID to inviter address
 	mapping(uint256 => address) private _inviters;
-	address private uriContractAddress;
+	address private _tokenURIContractAddress;
+	string private _contractURI;
 
 	function initialize(address _proxyRegistryAddress) public initializer {
 		__ERC721Tradable_init('MeemVite', 'MEEMVITE', _proxyRegistryAddress);
@@ -56,6 +57,8 @@ contract MeemVite is
 		_setupRole(PAUSER_ROLE, msg.sender);
 		_setupRole(MINTER_ROLE, msg.sender);
 		_setupRole(UPGRADER_ROLE, msg.sender);
+
+		_contractURI = '{"name": "MeemVite","description": "Meems are pieces of digital content wrapped in more advanced dynamic property rights. They are ideas, stories, images -- existing independently from any social platform -- whose creators have set the terms by which others can access, remix, and share in their value. Join us at https://discord.gg/5NP8PYN8","image": "https://meem-assets.s3.amazonaws.com/meem.jpg","external_link": "https://meem.wtf","seller_fee_basis_points": 1000, "fee_recipient": "0x40c6BeE45d94063c5B05144489cd8A9879899592"}';
 	}
 
 	function isApprovedForAll(address owner, address operator)
@@ -74,22 +77,15 @@ contract MeemVite is
 	}
 
 	function _baseURI() internal pure override returns (string memory) {
-		return
-			'https://raw.githubusercontent.com/meemproject/metadata/master/meem/';
+		return 'https://meem.wtf/';
 	}
 
-	// function pause() public onlyOwner {
 	function pause() public onlyRole(PAUSER_ROLE) {
 		_pause();
 	}
 
 	function unpause() public onlyRole(PAUSER_ROLE) {
 		_unpause();
-	}
-
-	function safeMint(address to) public onlyRole(MINTER_ROLE) {
-		_safeMint(to, _tokenIdCounter.current());
-		_tokenIdCounter.increment();
 	}
 
 	function _beforeTokenTransfer(
@@ -158,7 +154,7 @@ contract MeemVite is
 		return super.supportsInterface(interfaceId);
 	}
 
-	function mint(address to) external {
+	function mint(address to) public onlyRole(MINTER_ROLE) {
 		_safeMint(to, _tokenIdCounter.current());
 		_inviters[_tokenIdCounter.current()] = msg.sender;
 		emit InviterSet(_tokenIdCounter.current(), msg.sender);
@@ -183,18 +179,21 @@ contract MeemVite is
 		emit InviterSet(tokenId, from);
 	}
 
-	function contractURI() public pure returns (string memory) {
+	function contractURI() public view returns (string memory) {
 		return
 			string(
 				abi.encodePacked(
 					'data:application/json;base64,',
-					Base64.encode(
-						bytes(
-							'{"name": "MeemVite","description": "Meems are pieces of digital content wrapped in more advanced dynamic property rights. They are ideas, stories, images -- existing independently from any social platform -- whose creators have set the terms by which others can access, remix, and share in their value. Join us at https://discord.gg/5NP8PYN8","image": "https://meem-assets.s3.amazonaws.com/meem.jpg","external_link": "https://meem.wtf","seller_fee_basis_points": 0, "fee_recipient": "0xba343c26ad4387345edbb3256e62f4bb73d68a04"}'
-						)
-					)
+					Base64.encode(bytes(_contractURI))
 				)
 			);
+	}
+
+	function setContractURI(string memory newContractURI)
+		public
+		onlyRole(DEFAULT_ADMIN_ROLE)
+	{
+		_contractURI = newContractURI;
 	}
 
 	function tokenURI(uint256 tokenId)
@@ -203,14 +202,14 @@ contract MeemVite is
 		override(ERC721Upgradeable, ERC721URIStorageUpgradeable)
 		returns (string memory)
 	{
-		MeemViteURI uriContract = MeemViteURI(uriContractAddress);
+		MeemViteURI uriContract = MeemViteURI(_tokenURIContractAddress);
 		return uriContract.tokenURI(tokenId);
 	}
 
-	function setURIContractAddress(address addr)
+	function setTokenURIContractAddress(address addr)
 		public
 		onlyRole(DEFAULT_ADMIN_ROLE)
 	{
-		uriContractAddress = addr;
+		_tokenURIContractAddress = addr;
 	}
 }
