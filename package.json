@@ -22,10 +22,12 @@
 		"watch": "concurrently -r --kill-others \"chokidar 'tasks/**/*.ts' 'hardhat.config.ts' -c 'yarn build:ts'\" \"chokidar 'contracts/**/*.sol' -c 'yarn build:sol'\"",
 		"verify": "npx hardhat verify",
 		"lint": "eslint --max-warnings=0 --ext=.ts,.tsx . && tsc -p . --noEmit",
-		"lint:fix": "eslint --fix --ext=.ts,.tsx ."
+		"lint:fix": "eslint --fix --ext=.ts,.tsx .",
+		"release": "semantic-release"
 	},
 	"devDependencies": {
 		"@float-capital/solidity-coverage": "^0.7.17",
+		"@kengoldfarb/semantic-release-config": "^1.0.3",
 		"@nomiclabs/hardhat-ethers": "^2.0.2",
 		"@nomiclabs/hardhat-etherscan": "^2.1.2",
 		"@nomiclabs/hardhat-waffle": "^2.0.1",
