@@ -8,13 +8,19 @@ Join us in building the future of digital content where creators set the rules: 
 
 ### Polygon (MATIC) Mainnet
 
-MeemVite: [0x82faF9831CFD19c32cE09CE946Ad7e42E197455F](https://polygonscan.com/address/0x82faF9831CFD19c32cE09CE946Ad7e42E197455F)
+MeemVite Proxy: [0xF503e9A36402F9184211b7DCAf097b5a59923bAF](https://polygonscan.com/address/0xF503e9A36402F9184211b7DCAf097b5a59923bAF)
 
-MeemViteURI: [0x9Bc87C0DfEB0187404Fd4030A9b49FEAfb22E2c2](https://polygonscan.com/address/0x9Bc87C0DfEB0187404Fd4030A9b49FEAfb22E2c2)
+MeemVite Implementation: [0x824b166E7F6289518c8a694CF6385941a85d58DE](https://polygonscan.com/address/0x824b166E7F6289518c8a694CF6385941a85d58DE)
+
+MeemViteURI: [0xe00400D4b6dd34ACCa34b591F395379B65248503](https://polygonscan.com/address/0xe00400D4b6dd34ACCa34b591F395379B65248503)
+
+Opensea: [https://opensea.io/collection/meemvite](https://opensea.io/collection/meemvite)
 
 ### Rinkeby Testnet
 
-MeemVite: [0x275EeF8f111D2B79cB9C196133d1E1aD0a8710F2](https://rinkeby.etherscan.io/address/0x275EeF8f111D2B79cB9C196133d1E1aD0a8710F2)
+MeemVite Proxy: [0x275EeF8f111D2B79cB9C196133d1E1aD0a8710F2](https://rinkeby.etherscan.io/address/0x275EeF8f111D2B79cB9C196133d1E1aD0a8710F2)
+
+MeemVite Implementation: [0x0bfae9bb23c5c7633f37af2928b2ffd5594f4809](https://rinkeby.etherscan.io/address/0x0bfae9bb23c5c7633f37af2928b2ffd5594f4809)
 
 MeemViteURI: [0x1d2fA012f7557025Ac9FE1ADB0D738C4Bf57c1E2](https://rinkeby.etherscan.io/address/0x1d2fA012f7557025Ac9FE1ADB0D738C4Bf57c1E2)
 
