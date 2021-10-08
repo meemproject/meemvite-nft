@@ -8,7 +8,9 @@ Join us in building the future of digital content where creators set the rules: 
 
 ### Polygon (MATIC) Mainnet
 
+MeemVite: [0x82faF9831CFD19c32cE09CE946Ad7e42E197455F](https://polygonscan.com/address/0x82faF9831CFD19c32cE09CE946Ad7e42E197455F)
 
+MeemViteURI: [0x9Bc87C0DfEB0187404Fd4030A9b49FEAfb22E2c2](https://polygonscan.com/address/0x9Bc87C0DfEB0187404Fd4030A9b49FEAfb22E2c2)
 
 ### Rinkeby Testnet
 
@@ -16,7 +18,7 @@ MeemVite: [0x31ef3101f5F355933fcA188Af902651A192Db50a](https://rinkeby.etherscan
 
 MeemViteURI: [0x2Fad249f7b2e10708F4D7Ef8d20C21b18DF15Cf4](https://rinkeby.etherscan.io/address/0x2Fad249f7b2e10708F4D7Ef8d20C21b18DF15Cf4)
 
-Opensea: [https://testnets.opensea.io/collection/meem-project](https://testnets.opensea.io/collection/meem-project)
+Opensea: [https://testnets.opensea.io/collection/meemvite-v4](https://testnets.opensea.io/collection/meemvite-v4)
 
 ## Metadata
 
@@ -76,7 +78,7 @@ This will start up a local node using hardhat
 
 ### Upgrade the contract
 
-```yarn upgradeContract --contract-address <address>```
+```yarn upgradeContract --contractaddress <address>```
 
 ## Console Interaction
 

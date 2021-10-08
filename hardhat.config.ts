@@ -8,18 +8,22 @@ import 'hardhat-typechain'
 import 'hardhat-abi-exporter'
 import '@openzeppelin/hardhat-upgrades'
 import 'hardhat-gas-reporter'
+import 'hardhat-contract-sizer'
 import './tasks'
 
 dotenv.config()
 
 const config: HardhatUserConfig = {
 	solidity: {
-		version: '0.8.4',
+		compilers: [
+			{ version: '0.8.4' },
+			{ version: '0.8.3' },
+			{ version: '0.8.2' }
+		],
 		settings: {
 			optimizer: {
 				enabled: true,
-				runs: 100
-				// runs: 10_000
+				runs: 10_000
 			}
 		}
 	},
@@ -38,10 +42,10 @@ const config: HardhatUserConfig = {
 		},
 		polygon: {
 			timeout: 120000,
-			// url: 'https://polygon-rpc.com',
+			url: 'https://polygon-rpc.com',
 			// url: 'https://matic-mainnet-full-rpc.bwarelabs.com',
 			// url: 'https://polygon-mainnet.g.alchemy.com/v2/xLwwfjFEFLvv_mRhnv7ZW3qM8f3K8MHE',
-			url: 'https://rpc-mainnet.maticvigil.com',
+			// url: 'https://rpc-mainnet.maticvigil.com',
 			// url: 'https://matic-mainnet.chainstacklabs.com',
 			// chainId: 137,
 			// gasPrice,
