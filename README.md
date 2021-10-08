@@ -14,11 +14,11 @@ MeemViteURI: [0x9Bc87C0DfEB0187404Fd4030A9b49FEAfb22E2c2](https://polygonscan.co
 
 ### Rinkeby Testnet
 
-MeemVite: [0x31ef3101f5F355933fcA188Af902651A192Db50a](https://rinkeby.etherscan.io/address/0x31ef3101f5F355933fcA188Af902651A192Db50a)
+MeemVite: [0x275EeF8f111D2B79cB9C196133d1E1aD0a8710F2](https://rinkeby.etherscan.io/address/0x275EeF8f111D2B79cB9C196133d1E1aD0a8710F2)
 
-MeemViteURI: [0x2Fad249f7b2e10708F4D7Ef8d20C21b18DF15Cf4](https://rinkeby.etherscan.io/address/0x2Fad249f7b2e10708F4D7Ef8d20C21b18DF15Cf4)
+MeemViteURI: [0x1d2fA012f7557025Ac9FE1ADB0D738C4Bf57c1E2](https://rinkeby.etherscan.io/address/0x1d2fA012f7557025Ac9FE1ADB0D738C4Bf57c1E2)
 
-Opensea: [https://testnets.opensea.io/collection/meemvite-v4](https://testnets.opensea.io/collection/meemvite-v4)
+Opensea: [https://testnets.opensea.io/collection/meemvite-testnet](https://testnets.opensea.io/collection/meemvite-testnet)
 
 ## Metadata
 

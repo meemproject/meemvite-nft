@@ -23,6 +23,7 @@ task('deploy', 'Deploys MeemVite').setAction(
 
 		// This is the OpenSea proxy address which will allow trading to work properly
 		let proxyRegistryAddress = ''
+
 		switch (hardhatArguments.network) {
 			case 'matic':
 			case 'polygon':
@@ -35,6 +36,10 @@ task('deploy', 'Deploys MeemVite').setAction(
 
 			case 'mainnet':
 				proxyRegistryAddress = '0xa5409ec958c83c3f309868babaca7c86dcb077c1'
+				break
+
+			case 'local':
+				proxyRegistryAddress = '0x0000000000000000000000000000000000000000'
 				break
 
 			default:
