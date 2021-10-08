@@ -1,18 +1,34 @@
 # MeemVite token
 
-MeemVite NFT token
+A MeemVite token connects you directly with the MeemDAO team on Discord as a full "Meember".
 
-## Contract address
+Join us in building the future of digital content where creators set the rules: [https://discord.gg/5NP8PYN8](https://discord.gg/5NP8PYN8)
 
-### Rinkeby
+## Contract addresses
 
-MeemVite: [0xB117C7cc3cBdA283A98f2BF1eD55242d5d438bc2](https://rinkeby.etherscan.io/address/0xB117C7cc3cBdA283A98f2BF1eD55242d5d438bc2)
+### Polygon (MATIC) Mainnet
 
-MeemViteURI: [0x98FcF9C8bB265C74818F5eC4fC067e564304361a](https://rinkeby.etherscan.io/address/0x98FcF9C8bB265C74818F5eC4fC067e564304361a)
+MeemVite Proxy: [0xF503e9A36402F9184211b7DCAf097b5a59923bAF](https://polygonscan.com/address/0xF503e9A36402F9184211b7DCAf097b5a59923bAF)
 
-Opensea: [https://testnets.opensea.io/collection/meem-project](https://testnets.opensea.io/collection/meem-project)
+MeemVite Implementation: [0x824b166E7F6289518c8a694CF6385941a85d58DE](https://polygonscan.com/address/0x824b166E7F6289518c8a694CF6385941a85d58DE)
+
+MeemViteURI: [0xe00400D4b6dd34ACCa34b591F395379B65248503](https://polygonscan.com/address/0xe00400D4b6dd34ACCa34b591F395379B65248503)
+
+Opensea: [https://opensea.io/collection/meemvite](https://opensea.io/collection/meemvite)
+
+### Rinkeby Testnet
+
+MeemVite Proxy: [0x275EeF8f111D2B79cB9C196133d1E1aD0a8710F2](https://rinkeby.etherscan.io/address/0x275EeF8f111D2B79cB9C196133d1E1aD0a8710F2)
+
+MeemVite Implementation: [0x0bfae9bb23c5c7633f37af2928b2ffd5594f4809](https://rinkeby.etherscan.io/address/0x0bfae9bb23c5c7633f37af2928b2ffd5594f4809)
+
+MeemViteURI: [0x1d2fA012f7557025Ac9FE1ADB0D738C4Bf57c1E2](https://rinkeby.etherscan.io/address/0x1d2fA012f7557025Ac9FE1ADB0D738C4Bf57c1E2)
+
+Opensea: [https://testnets.opensea.io/collection/meemvite-testnet](https://testnets.opensea.io/collection/meemvite-testnet)
 
 ## Metadata
+
+All metadata is 100% on-chain!
 
 * Metadata standards for opensea: https://docs.opensea.io/docs/metadata-standards
 
@@ -22,6 +38,10 @@ Opensea: [https://testnets.opensea.io/collection/meem-project](https://testnets.
 
 By default all commands will use the local network. For other networks use the ```--network <network_name>``` flag. See the hardhat.config.ts file for network names.
 
+### Set up your .env
+
+Copy the `.env.example` file to .env
+
 ### Install dependencies
 
 ```yarn```
@@ -30,11 +50,15 @@ By default all commands will use the local network. For other networks use the `
 
 ```yarn watch```
 
+### Run tests
+
+```yarn test```
+
 ### Run local blockchain
 
 This will start up a local node using hardhat
 
-```yarn node```
+```yarn network```
 
 **NEVER SEND ETH TO THESE ADDRESSES EXCEPT ON YOUR LOCAL NETWORK**
 
@@ -42,7 +66,7 @@ This will start up a local node using hardhat
 
 > **Change the network**
 >
-> For (deploy, upgrade, console) commands, you can change the network with `--network rinkeby`
+> For (deploy, upgrade, console, etc.) commands, you can change the network with `--network <network name>`
 >
 > The local network is used by default.
 
@@ -60,7 +84,7 @@ This will start up a local node using hardhat
 
 ### Upgrade the contract
 
-```yarn upgradeContract --contract-address <address>```
+```yarn upgradeContract --contractaddress <address>```
 
 ## Console Interaction
 
@@ -74,12 +98,18 @@ This will open a hardhat console where you can interact directly with the smart 
 const meemVite = await (await ethers.getContractFactory('MeemVite')).attach('<Contract_address>')
 ```
 
-### Mint a meem
+### Set the token URI contract
 
-The last parameter is the royalty percentage w/ 2 decimals. 1000 == 10%
+To properly return the `tokenURI`, the contract of the MeemViteURI address must be set
 
 ```
-await meem.mint('<To address>', '<Royalty address>', 1000)
+await meemVite.setTokenURIContractAddress(<MeemViteURI address>)
+```
+
+### Mint a MeemVite
+
+```
+await meem.mint('<To address>')
 ```
 
 ### Get meem metadata uri

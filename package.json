@@ -7,7 +7,7 @@
 	"homepage": "https://meem.wtf",
 	"scripts": {
 		"build": "yarn build:sol && yarn build:ts",
-		"clean": "rm -rf cache artifacts abi .openzeppelin dist typechain",
+		"clean": "rm -rf cache artifacts abi dist typechain",
 		"build:ts": "tsc -p .",
 		"build:sol": "npx hardhat compile",
 		"hardhat": "npx hardhat",
@@ -52,6 +52,7 @@
 		"ethers": "^5.0.32",
 		"hardhat": "^2.1.1",
 		"hardhat-abi-exporter": "^2.2.1",
+		"hardhat-contract-sizer": "^2.1.1",
 		"hardhat-gas-reporter": "^1.0.4",
 		"hardhat-typechain": "^0.3.5",
 		"prettier": "^2.4.1",

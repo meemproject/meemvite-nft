@@ -16,7 +16,6 @@ typechain
 cache
 artifacts
 typechain/**
-.openzeppelin
 
 # Script output
 logs

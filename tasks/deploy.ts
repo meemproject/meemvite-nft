@@ -22,10 +22,28 @@ task('deploy', 'Deploys MeemVite').setAction(
 		}
 
 		// This is the OpenSea proxy address which will allow trading to work properly
-		let proxyRegistryAddress = '0xa5409ec958c83c3f309868babaca7c86dcb077c1'
+		let proxyRegistryAddress = ''
 
-		if (hardhatArguments.network === 'rinkeby') {
-			proxyRegistryAddress = '0xf57b2c51ded3a29e6891aba85459d600256cf317'
+		switch (hardhatArguments.network) {
+			case 'matic':
+			case 'polygon':
+				proxyRegistryAddress = '0x58807baD0B376efc12F5AD86aAc70E78ed67deaE'
+				break
+
+			case 'rinkeby':
+				proxyRegistryAddress = '0xf57b2c51ded3a29e6891aba85459d600256cf317'
+				break
+
+			case 'mainnet':
+				proxyRegistryAddress = '0xa5409ec958c83c3f309868babaca7c86dcb077c1'
+				break
+
+			case 'local':
+				proxyRegistryAddress = '0x0000000000000000000000000000000000000000'
+				break
+
+			default:
+				break
 		}
 
 		const MeemVite = await ethers.getContractFactory('MeemVite')

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: BSD-3-Clause
-pragma solidity ^0.8.3;
+pragma solidity ^0.8.4;
 
 import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
 import '@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol';
@@ -28,6 +28,10 @@ contract ERC721TradableUpgradeable is Initializable, ERC721Upgradeable {
 		internal
 		initializer
 	{
+		proxyRegistryAddress = _proxyRegistryAddress;
+	}
+
+	function _setProxyRegistryAddress(address _proxyRegistryAddress) internal {
 		proxyRegistryAddress = _proxyRegistryAddress;
 	}
 
