@@ -46,6 +46,10 @@ Copy the `.env.example` file to .env
 
 ```yarn```
 
+### Compile contracts
+
+```yarn build```
+
 ### Watch and compile files automatically
 
 ```yarn watch```
@@ -98,6 +102,14 @@ This will open a hardhat console where you can interact directly with the smart 
 const meemVite = await (await ethers.getContractFactory('MeemVite')).attach('<Contract_address>')
 ```
 
+### Initialize meem instance with default admin address
+
+When running locally, initialize the instance with the first generated local account address. It will have DEFAULT_ADMIN role
+
+```
+await meemVite.initialize('0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266')
+```
+
 ### Set the token URI contract
 
 To properly return the `tokenURI`, the contract of the MeemViteURI address must be set
@@ -109,15 +121,15 @@ await meemVite.setTokenURIContractAddress(<MeemViteURI address>)
 ### Mint a MeemVite
 
 ```
-await meem.mint('<To address>')
+await meemVite.mint('<To address>')
 ```
 
 ### Get meem metadata uri
 
 ```
-await meem.tokenURI(<Meem id>)
+await meemVite.tokenURI(<Meem id>)
 
-await meem.tokenURI(0)
+await meemVite.tokenURI(0)
 ```
 
 ### Grant a role
