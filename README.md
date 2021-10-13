@@ -142,7 +142,7 @@ Available Roles:
 * `UPGRADER_ROLE`
 
 ```
-await meem.grantRole((await meem.MINTER_ROLE()), '<address>')
+await meemVite.grantRole((await meemVite.MINTER_ROLE()), '<address>')
 ```
 
 ## Faucets
